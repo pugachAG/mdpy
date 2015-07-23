@@ -8,7 +8,6 @@ class MdTableColumnAlignment:
 
 
 class MdTable:
-
     def __init__(self, *columns):
         self.__column_names = list(columns)
         self.__data = list()
@@ -16,6 +15,7 @@ class MdTable:
     def add_entry(self, *values):
         assert len(values) == len(self.__column_names)
         self.__data.append([str(x) for x in values])
+        return self
 
     def __str__(self):
         res = list()

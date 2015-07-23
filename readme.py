@@ -62,7 +62,7 @@ if __name__ == '__main__':
     # note that this header will be automatically added to the document table of contents  
     doc.emplace_heading('H5 header example', 5)
     # or you can explicitly specify if you want header to be added to the table of contents
-    doc.emplace_heading('This one will not be added to the content table', 5, False)
+    doc.emplace_heading('This one will not be added to the table of contents', 5, False)
     capt.capture_end()
     # add heading example code
     doc.add_content(format_source_code(capt.captured_code))
@@ -70,16 +70,18 @@ if __name__ == '__main__':
     # markdown table example
     doc.emplace_heading('Table', TOP_HEADING_LEVEL + 1)
     capt.capture_begin()
-    # table definition
-    md_table = MdTable(
-        ('Column align center', MdTableColumnAlignment.CENTER),
-        ('Column align left', MdTableColumnAlignment.LEFT),
-        ('Column align right', MdTableColumnAlignment.RIGHT))
-    # add table entries
-    md_table.add_entry(1, 'To be, or not to be, that is the question', 'Shakespeare')
-    md_table.add_entry(2, 'Wow, such alignment, very left', 'Doge')
     # add table to the document
-    doc.add_content(md_table)
+    doc.add_content(
+        # table definition
+        MdTable(
+            # column headers definitions
+            ('Column align center', MdTableColumnAlignment.CENTER),
+            ('Column align left', MdTableColumnAlignment.LEFT),
+            ('Column align right', MdTableColumnAlignment.RIGHT))
+        # add table entries (fluent interface)
+        .add_entry(1, 'To be, or not to be, that is the question', 'Shakespeare')
+        .add_entry(2, 'Wow, such alignment, very left', 'Doge')
+    )
     capt.capture_end()
     # add  table example code
     doc.add_content(format_source_code(capt.captured_code))
@@ -87,18 +89,21 @@ if __name__ == '__main__':
     # markdown list example
     doc.emplace_heading('List', TOP_HEADING_LEVEL + 1)
     capt.capture_begin()
-    # list definition
-    md_list = MdList()
-    # add list items
-    md_list.add_item('List item 1')
-    md_list.add_item('The second one')
-    nested_list = MdList()
-    nested_list.add_item('Nested list item 1')
-    nested_list.add_item('Nested list item 2')
-    md_list.add_item(nested_list)
-    md_list.add_item('Outer list item 3')
     # add list to the document
-    doc.add_content(md_list)
+    doc.add_content(
+        # list definition
+        MdList()
+        # add list items (fluent interface)
+        .add_item('List item 1')
+        .add_item('The second one')
+        .add_item(
+            # nested list definition
+            MdList()
+            .add_item('Nested list item 1')
+            .add_item('Nested list item 2')
+        )
+        .add_item('Outer list item 3')
+    )
     capt.capture_end()
     # add  list example code
     doc.add_content(format_source_code(capt.captured_code))

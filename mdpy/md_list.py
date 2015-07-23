@@ -7,6 +7,7 @@ class MdList:
 
     def add_item(self, item):
         self.__items.append(item)
+        return self
 
     def __str__(self):
         star = '*'

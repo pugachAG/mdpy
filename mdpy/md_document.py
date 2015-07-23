@@ -3,12 +3,11 @@ from .md_heading import MdHeading
 from .md_document_content import MdDocumentContent
 
 class MdDocument:
-
     CONTENT_TABLE_HEADING_TITLE = 'Table of Contents'
 
     def __init__(self, name, version=None):
-        self.__version = version
         self.__name = name
+        self.__version = version
         self.__content = list()
         self.__content_table = MdDocumentContent()
 
@@ -16,12 +15,14 @@ class MdDocument:
         self.add_content(item)
         if add_content_table:
             self.__content_table.add_item(item, self.__get_level(item))
+        return self
 
     def emplace_heading(self, text, level, add_content_table=True):
-        self.add_heading(MdHeading(level, text), add_content_table)
+        return self.add_heading(MdHeading(level, text), add_content_table)
 
     def add_content(self, item):
         self.__content.append(item)
+        return self
 
     def save(self, filename):
         with open(filename, "w") as text_file:
