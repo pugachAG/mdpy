@@ -59,9 +59,9 @@ if __name__ == '__main__':
     doc.emplace_heading('Heading', TOP_HEADING_LEVEL + 1)
     capt.capture_begin()
     # add H4 header to the document
-    # note that this header will be automatically added to the document content table
+    # note that this header will be automatically added to the document table of contents  
     doc.emplace_heading('H5 header example', 5)
-    # or you can explicitly specify if you want header to be added to the content table
+    # or you can explicitly specify if you want header to be added to the table of contents
     doc.emplace_heading('This one will not be added to the content table', 5, False)
     capt.capture_end()
     # add heading example code

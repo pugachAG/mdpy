@@ -35,9 +35,9 @@ doc = MdDocument('mdpy')
 
 ```python
 # add H4 header to the document
-# note that this header will be automatically added to the document content table
+# note that this header will be automatically added to the document table of contents  
 doc.emplace_heading('H5 header example', 5)
-# or you can explicitly specify if you want header to be added to the content table
+# or you can explicitly specify if you want header to be added to the table of contents
 doc.emplace_heading('This one will not be added to the content table', 5, False)
 
 ```
